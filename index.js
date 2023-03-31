@@ -74,18 +74,20 @@ function cumleKur(birinci, ikinci="", ucuncu="", dorduncu="", besinci=""){
 }
 
 /* (Oto test yok) cumleKur fonksiyonuna yalnızca 1 parametre göndererek "Hello World!" stringini elde edin, sonucu konsolde gözlemleyin */
-
+console.log(cumleKur("Hello World!"));
 
 
 
 /* (Oto test yok) cumleKur fonksiyonuna yalnızca 2 parametre göndererek "Hello World!" stringini elde edin, sonucu konsolde gözlemleyin */
 
+console.log(cumleKur("Hello", " World!"));
 
 
 
 /* (Oto test var) cumleKur fonksiyonuna 5 parametre göndererek "Ben iyi bir yazılımcı olacağım!" stringini elde edin, sonucu `bircumle` değişkenine atayın ve konsolde gözlemleyin */
-var bircumle;
+var bircumle =cumleKur("Ben"," iyi"," bir"," yazılımcı"," olacağım!")
 
+console.log(bircumle);
 /* kodlar buraya */
 
 
@@ -104,9 +106,13 @@ var bircumle;
 	*/
 	
 
-function cumlelereDonustur(/* kodlar buraya */ ){
+function cumlelereDonustur(cumlelerArray, ayrac =","){
+	return cumlelerArray.map(cumle => cumle.join(ayrac));}
+console.log(cumlelereDonustur(cumleler, " "));
+
+
 	/* kodlar buraya */
-}
+ console.log("gorev 1 : ", cumlelereDonustur(cumleler));
 
 
 
@@ -120,17 +126,28 @@ function cumlelereDonustur(/* kodlar buraya */ ){
 			6. Oluşturulan paragraf döndürülecek
 	*/
 	
-function paragrafOlustur(/* kodlar buraya */ ){
-	/* kodlar buraya */ 
-}
-
+	function paragrafOlustur(cumlelerArray,cbCumleKur, cbCumlelereDonustur) {
+		let newArray = cbCumlelereDonustur(cumlelerArray, " ");
+		return cbCumleKur(newArray[1],newArray[3], newArray[5], newArray[7], newArray[9] );
+	}
+	console.log(paragrafOlustur(cumleler,cumleKur,cumlelereDonustur));
+	
+	/*----- BU YOLLA YAPAMADIM ---- 
+function paragrafOlustur(cumlelerArray,cbCumleKur, cbCumlelereDonustur){
+	let yeniDizi = cbCumlelereDonustur(cumlelerArray, " ");
+	let geriCagir = yeniDizi.filter	((arr, index) => index % 2 === 1).splice(0,5); // 2 ye bölündüğünde 1 kalanına veren 5 index gericagıra
+	let sonucParagraf =  geriCagir.join(" ");
+return sonucParagraf;
+} console.log(paragrafOlustur(cumleler,cumleKur,cumlelereDonustur)); // index testteki string e consol uyduğu halde testten geçmedi 
+*/
 
 /* 	GÖREV 3:
 		Yukarıda isimleri sebzeler ve meyveler olan 2 dizi bulunmaktadır. Bu dizileri kullanarak aşağıdaki görevleri tamamlayın.
 			3a. meyveler dizisinin ilk ve son elemanlarını diziden çıkartın. (.pop ve .shift metodlarını kullanın)
  */
 //3a çözümü
-/* kodlar buraya */
+meyveler.shift();
+meyveler.pop();
 
 
 
@@ -141,7 +158,8 @@ function paragrafOlustur(/* kodlar buraya */ ){
 */
 //3b çözümü
 /* kodlar buraya */
-
+sebzeler.unshift("🐇");
+sebzeler.push("🦔");
 
 
 
@@ -154,7 +172,7 @@ function paragrafOlustur(/* kodlar buraya */ ){
 	//3c çözümü
 /* kodlar buraya */
 
-var manav;
+var manav = meyveler.concat(sebzeler);
 
 
 
@@ -169,11 +187,20 @@ var manav;
 				yani hem :d hem de :D sembolleri 😁'a dönüşmelidir. bunun için (.toUpperCase ve .toLowerCase metotlarından istediğinizi kullanabilirsiniz.)
 			4. elde edilen string döndürülecek
  */
-
-function emojileriDonustur(/* kodlar buraya */){
-/* kodlar buraya */
-
+		
+function emojileriDonustur(mesaj,obj){
+var emojikey = Object.keys(obj); // objenin keylerini cıkarır
+var emojiVal = Object.values(obj); // objenin value degerlerini çıkarır
+	for (let i = 0; i < emojikey.length ; i++) {
+	 mesaj	 = mesaj.replaceAll(emojikey[i].toUpperCase(), emojiVal[i]); // .toUpperCase büyük harf yapar
+	mesaj = mesaj.replaceAll(emojikey[i].toLowerCase(), emojiVal[i]);   //tolowercase küçük harf yapar
 }
+return mesaj}; // mesaj yerine let sonuc = diye devam etmek istedim fordan sonra fakat not defined alıyorum sorulacak.
+
+console.log(emojileriDonustur(":d",emojiler));
+
+
+
 
 
 
